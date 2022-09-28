@@ -13,11 +13,11 @@ export default class Task<T> {
   constructor({
     name,
     cron,
-    fn,
+    run: fn,
   }: {
     name: string;
     cron: string;
-    fn: TaskFn<T>;
+    run: TaskFn<T>;
   }) {
     this.name = name;
     this.cron = cron;
@@ -44,14 +44,10 @@ export default class Task<T> {
   }
 
   async tick() {
-    console.log(`Task(${this.name}).tick`);
-
     const now = new Date();
     const nextRunDate = await this.calculateNextRunDate();
 
     if (nextRunDate < now) {
-      console.log(`Task(${this.name}): ${now}`);
-
       await this.fn();
       await this.updateRunDate();
     }

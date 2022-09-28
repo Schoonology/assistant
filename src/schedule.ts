@@ -1,20 +1,16 @@
-import potato from "./devices/potato";
-import relayBrick from "./devices/relay_brick";
 import Task from "./task";
 
-const crontab: Array<Task<unknown>> = [
-  new Task({
-    name: "hello",
-    cron: "* * * * *",
-    fn: () => console.log("Hello!"),
-  }),
-];
+type Crontab = Array<Task<unknown>>;
 
-class Schedule {
+export default class Schedule {
+  crontab: Crontab;
+
+  constructor(crontab: Crontab) {
+    this.crontab = crontab;
+  }
+
   tick() {
-    console.log("Schedule.tick");
-
-    return Promise.all(crontab.map((task) => task.tick()));
+    return Promise.all(this.crontab.map((task) => task.tick()));
   }
 
   run() {
@@ -23,5 +19,3 @@ class Schedule {
     setInterval(() => this.tick(), 1000);
   }
 }
-
-export default new Schedule();
