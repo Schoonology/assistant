@@ -12,6 +12,7 @@
   "author": "",
   "dependencies": {
     "better-sqlite3": "^7.6.2",
+    "cron-parser": "^4.6.0",
     "particle-api-js": "^9.4.1",
     "wemo-client": "^0.15.0"
   },
