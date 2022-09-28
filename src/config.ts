@@ -1,6 +1,6 @@
 const config = {
   database: {
-    path: ":memory:",
+    path: process.env.DATABASE_PATH || ":memory:",
   },
   particle: {
     username: process.env.PARTICLE_USERNAME,

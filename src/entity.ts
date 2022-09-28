@@ -33,7 +33,9 @@ export default class Entity {
 
   set(key: string, value: unknown) {
     return this.db
-      .prepare("INSERT INTO data (entity, key, value) VALUES (?, ?, ?)")
+      .prepare(
+        "INSERT INTO data (entity, key, value) VALUES (?, ?, ?) ON CONFLICT DO UPDATE SET value = EXCLUDED.value"
+      )
       .run([this.name, key, JSON.stringify(value)]);
   }
 }
