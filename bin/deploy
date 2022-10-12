@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+mkdir -p dist
+docker build -t schoonology/assistant --platform linux/amd64 .
+docker save schoonology/assistant > dist/assistant.tar
+scp dist/assistant.tar sprout.local:/tmp/assistant.tar
+ssh sprout.local /usr/local/bin/podman load --input /tmp/assistant.tar
+ssh sprout.local /usr/local/bin/podman stop assistant || true
+# ssh sprout.local touch '~/podman/assistant.sqlite3'
+ssh sprout.local /usr/local/bin/podman run --rm --detach \
+  --env \'DATABASE_PATH="/podman/assistant.sqlite3"\' \
+  --env \'PARTICLE_USERNAME="${PARTICLE_USERNAME}"\' \
+  --env \'PARTICLE_PASSWORD="${PARTICLE_PASSWORD}"\' \
+  --volume '/podman/assistant.sqlite3:/podman/assistant.sqlite3' \
+  --name assistant schoonology/assistant

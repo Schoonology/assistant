@@ -4,6 +4,7 @@ import Task from "./task";
 import potato from "./devices/potato";
 import relayBrick from "./devices/relay_brick";
 
+// To double check cron syntax, look at https://cron.help
 const schedule = new Schedule([
   new Task({
     name: "Start dehumidifier",
