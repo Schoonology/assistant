@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/main.ts",
+  "license": "MPL-2.0",
   "scripts": {
     "lint": "eslint . --ext .ts",
     "pkg": "pkg",
