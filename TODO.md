@@ -1,0 +1,3 @@
+- [ ] Alfred
+- [ ] Turn the light on when sunset starts, turn it off at 9, on again at 7, off when sunrise ends
+- [ ] Turn off dehumidifier 9–4?

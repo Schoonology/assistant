@@ -92,6 +92,7 @@
   },
   "files": [
     "./types/particle.d.ts",
+    "./types/suncalc.d.ts",
     "./types/wemo-client.d.ts",
     "./src/main.ts"
   ]

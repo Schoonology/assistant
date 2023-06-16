@@ -41,3 +41,13 @@ const schedule = new Schedule([
 ]);
 
 schedule.run();
+
+import SunCalc from "suncalc";
+console.log(
+  SunCalc.getTimes(
+    new Date(),
+    Number(process.env.LOCATION_LATITUDE),
+    Number(process.env.LOCATION_LONGITUDE),
+    Number(process.env.LOCATION_ALTITUDE)
+  ).sunsetStart.toLocaleString()
+);
